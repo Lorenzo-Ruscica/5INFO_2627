@@ -104,10 +104,10 @@
 		width: 0;
 		height: 0;
 		position: absolute;
-		top: 0;
+		top: 100%;
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
+		border-bottom: var(--size) solid var(--color-theme-1);
 	}
 
 	nav a {
