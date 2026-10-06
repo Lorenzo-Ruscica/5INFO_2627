@@ -13,7 +13,7 @@
 			<enhanced:img class="welcome-image" src="#lib/images/svelte-welcome.png" alt="Welcome" />
 		</span>
 
-		to your new<br />SvelteKit app
+		alla tua nuova<br />applicazione SvelteKit
 	</h1>
 
 	<h2>
