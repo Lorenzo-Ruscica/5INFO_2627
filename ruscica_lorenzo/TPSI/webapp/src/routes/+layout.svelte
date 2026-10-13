@@ -7,6 +7,7 @@
 		<nav>
 		<ul>
 			<li><a href="/chi_sono">Chi sono</a></li>
+			<li><a href="/input">Input</a></li>
 			<li><a href="#">Counter</a></li>
 			<li><a href="#">About</a></li>
 		</ul>
