@@ -1,15 +1,29 @@
 <svelte:head>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Spice&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet" />
+    <link href="https://googleapis.com" rel="stylesheet">
 </svelte:head>
 
 <script>
+    import { createEventDispatcher } from 'svelte';
+
     export let counter = 0;
+    const dispatch = createEventDispatcher();
+
     function counter_incr() {
-    counter += 1;
+        counter += 1;
+        emit_event('incr');
     }
+
     function counter_decr() {
-    counter -= 1;
+        counter -= 1;
+        emit_event('decr');
+    }      
+
+    function emit_event(tipo) {
+        dispatch('contatore', {
+            tipo: tipo,
+            valore: counter
+        });
     }
 </script>
 
@@ -28,7 +42,6 @@
         </button>
     </div>
 </div>
-
 
 <style>
 .container {
