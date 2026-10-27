@@ -16,6 +16,8 @@
     function gestisci_evento(evento) {
         alert(`${evento.detail.tipo} -- ${evento.detail.valore}`);
     }
+
+    
 </script>
 
 <h1>Pagina Counter</h1>
