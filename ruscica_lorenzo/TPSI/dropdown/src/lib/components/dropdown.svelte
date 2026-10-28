@@ -1,23 +1,44 @@
 <script>
-	let { title } = $props();
-  </script>
-  
-  <button class="btn">
-	<span>{title}</span>
-	<span>▼</span>
-  </button>
-<style>
-	.btn {
-	  display: flex;
-	  justify-content: space-between;
-	  background: red;
-	  color: white;
-	  border: none;
-	  padding: 15px 25px;
-	  border-radius: 15px;
-	  width: 320px;
-	  font-size: 20px;
-	  margin-bottom: 25px;
+	import Items from '#lib/components/items.svelte';
+
+	export let title;
+	export let items = [];
+	export let selezionato = '';
+
+	let aperto = false;
+
+	function toggle() {
+		aperto = !aperto;
 	}
-  </style>
-  
+</script>
+
+<div class="box">
+	<button class="btn" on:click={toggle}>
+		<span>{title}</span>
+		<span>▼</span>
+	</button>
+
+	{#if aperto}
+		{#each items as item}
+			<Items {item} bind:selezionato={selezionato} />
+		{/each}
+	{/if}
+</div>
+
+<style>
+	.box {
+		margin-bottom: 25px;
+	}
+
+	.btn {
+		display: flex;
+		justify-content: space-between;
+		background: red;
+		color: white;
+		border: none;
+		padding: 15px 25px;
+		border-radius: 15px;
+		width: 320px;
+		font-size: 20px;
+	}
+</style>
