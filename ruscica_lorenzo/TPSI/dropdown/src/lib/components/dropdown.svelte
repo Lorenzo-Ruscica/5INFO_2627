@@ -4,11 +4,14 @@
 	export let title;
 	export let items = [];
 	export let selezionato = '';
-
-	let aperto = false;
+	export let aperto;
 
 	function toggle() {
-		aperto = !aperto;
+		if (aperto === title) {
+			aperto = '';
+		} else {
+			aperto = title;
+		}
 	}
 </script>
 
@@ -18,7 +21,7 @@
 		<span>▼</span>
 	</button>
 
-	{#if aperto}
+	{#if aperto === title}
 		{#each items as item}
 			<Items {item} bind:selezionato={selezionato} />
 		{/each}
@@ -42,3 +45,4 @@
 		font-size: 20px;
 	}
 </style>
+
