@@ -28,8 +28,8 @@
 			corretta: 2
 		},
 		{
-			testo: "Quale direttiva applica una classe CSS in base a una condizione?",
-			opzioni: ["style:nome", "bind:class", "use:class", "class:nome"],
+			testo: "Chi è il miglior professore dell'agnelli",
+			opzioni: ["Mancuso", "Arruzza", "Giannattasio", "Moretti"],
 			corretta: 3
 		}
 	];
@@ -38,77 +38,3 @@
 	let punteggio = 0;
 	let risposteDate = [];
 	let finito = false;
-
-	$: totale = domande.length;
-	$: domandaCorrente = domande[indice];
-	$: rispostaCorrente = risposteDate[indice];
-	$: ultima = indice === totale - 1;
-	$: percentuale = Math.round((punteggio / totale) * 100);
-
-	function salvaRisposta(event) {
-		risposteDate[indice] = event.detail;
-		if (event.detail === domandaCorrente.corretta) {
-			punteggio++;
-		}
-	}
-
-	function vaiAvanti() {
-		if (ultima) {
-			finito = true;
-		} else {
-			indice++;
-		}
-	}
-
-	function ricomincia() {
-		indice = 0;
-		punteggio = 0;
-		risposteDate = [];
-		finito = false;
-	}
-</script>
-
-<h1>Quiz Svelte</h1>
-
-<p>Domanda {indice + 1} di {totale} · Punteggio: {punteggio}</p>
-<progress value={indice + 1} max={totale}></progress>
-
-{#if !finito}
-	<Domanda
-		domanda={domandaCorrente}
-		rispostaData={rispostaCorrente}
-		ultima={ultima}
-		on:risposta={salvaRisposta}
-		on:avanti={vaiAvanti}
-	/>
-{:else}
-	<h2>Risultato: {punteggio} su {totale} ({percentuale}%)</h2>
-
-	{#if percentuale === 100}
-		<p>Giudizio: Ottimo</p>
-	{:else if percentuale >= 60}
-		<p>Giudizio: Sufficiente</p>
-	{:else}
-		<p>Giudizio: Insufficiente</p>
-	{/if}
-
-	{#each domande as dom, i}
-		<p
-			class:verde={risposteDate[i] === dom.corretta}
-			class:rosso={risposteDate[i] !== dom.corretta}
-		>
-			{i + 1}. {dom.testo} - Risposta: {dom.opzioni[risposteDate[i]]}
-		</p>
-	{/each}
-
-	<button on:click={ricomincia}>Ricomincia</button>
-{/if}
-
-<style>
-	.verde {
-		color: green;
-	}
-	.rosso {
-		color: red;
-	}
-</style>
